@@ -20,7 +20,6 @@ namespace WatchersNET.DNN.Modules
     using System.Web.UI;
     using System.Web.UI.HtmlControls;
     using System.Web.UI.WebControls;
-
     using DotNetNuke.Common;
     using DotNetNuke.Common.Utilities;
     using DotNetNuke.Entities.Content.Common;
@@ -33,6 +32,7 @@ namespace WatchersNET.DNN.Modules
     using DotNetNuke.Services.Exceptions;
     using DotNetNuke.Services.FileSystem;
     using DotNetNuke.Services.Localization;
+    using DotNetNuke.Web.Client.ClientResourceManagement;
 
     #endregion
 
@@ -920,8 +920,8 @@ namespace WatchersNET.DNN.Modules
         {
             Type csType = this.GetType();
 
-            // Register jQuery
-            jQuery.RequestRegistration();
+            //// Register jQuery
+            //jQuery.RequestRegistration();
 
             // jQuery Cookie Plugin
             ScriptManager.RegisterClientScriptInclude(
@@ -974,18 +974,20 @@ namespace WatchersNET.DNN.Modules
         /// </summary>
         private void PlaceSkinStyleLink()
         {
-            if (this.sRenderMode.Equals("normal"))
-            {
-                PageBase.RegisterStyleSheet(
-                    this.Page,
-                    this.ResolveUrl(string.Format("{0}{1}/SiteMap.css", this.ResolveUrl("Skins/"), this.sSkinName)));
-            }
-            else if (this.sRenderMode.Equals("treeview"))
-            {
-                PageBase.RegisterStyleSheet(
-                    this.Page,
-                    this.ResolveUrl(string.Format("{0}{1}/SiteMapTree.css", this.ResolveUrl("Skins/"), this.sSkinName)));
-            }
+            //if (this.sRenderMode.Equals("normal"))
+            //{
+            //    DnnCssInclude
+            //    PageBase.RegisterStyleSheet(
+            //        this.Page,
+            //        this.ResolveUrl(string.Format("{0}{1}/SiteMap.css", this.ResolveUrl("Skins/"), this.sSkinName)));
+            //}
+            //else if (this.sRenderMode.Equals("treeview"))
+            //{;
+            //    ClientResourceManager.RegisterStyleSheet();
+            //    PageBase.RegisterStyleSheet(
+            //        this.Page,
+            //        this.ResolveUrl(string.Format("{0}{1}/SiteMapTree.css", this.ResolveUrl("Skins/"), this.sSkinName)));
+            //}
         }
 
         /// <summary>
@@ -1323,7 +1325,7 @@ namespace WatchersNET.DNN.Modules
                 return this.ResolveUrl(tab.IconFile);
             }
 
-            return tab.IsSuperTab || tab.IsAdminTab
+            return tab.IsSuperTab || tab.IsSecure
                        ? this.ResolveUrl(string.Format("{0}/images/{1}", Globals.ApplicationPath, tab.IconFile))
                        : this.ResolveUrl(Path.Combine(this.PortalSettings.HomeDirectory, tab.IconFile));
         }

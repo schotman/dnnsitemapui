@@ -26,7 +26,7 @@ namespace WatchersNET.DNN.Modules
     /// <summary>
     /// Controller for the SiteMap for IPortable and ISearchable
     /// </summary>
-    public class SiteMapController : ModuleSettingsBase, IPortable, ISearchable
+    public class SiteMapController : ModuleSettingsBase, IPortable
     {
         #region Implemented Interfaces
 
@@ -48,7 +48,8 @@ namespace WatchersNET.DNN.Modules
                 var moduleController = new ModuleController();
 
                 var moduleInfo = moduleController.GetModule(moduleId);
-                var tabModuleSettings = moduleController.GetTabModuleSettings(moduleInfo.TabModuleID);
+                //var tabModuleSettings = moduleController.GetTabModuleSettings(moduleInfo.TabModuleID);
+                var tabModuleSettings = moduleInfo.TabModuleSettings;
 
                 string sSkin = "Default";
                 string sExlTabLst = string.Empty;
@@ -250,7 +251,7 @@ namespace WatchersNET.DNN.Modules
 
                 ModuleInfo objModule = objModules.GetModule(moduleId, this.TabId);
 
-                objModules.GetTabModuleSettings(objModule.TabModuleID);
+                //objModules.GetTabModuleSettings(objModule.TabModuleID);
 
                 foreach (XmlNode xmlContent in xmlTagCloud.SelectNodes("Settings"))
                 {
@@ -299,23 +300,6 @@ namespace WatchersNET.DNN.Modules
 
         #endregion
 
-        #region ISearchable
-
-        /// <summary>
-        /// included as a stub only so that the core knows this module Implements Entities.Modules.ISearchable
-        /// </summary>
-        /// <param name="modInfo">
-        /// Current Module Info
-        /// </param>
-        /// <returns>
-        /// The Search Items from the Module
-        /// </returns>
-        public SearchItemInfoCollection GetSearchItems(ModuleInfo modInfo)
-        {
-            return null;
-        }
-
-        #endregion
 
         #endregion
     }

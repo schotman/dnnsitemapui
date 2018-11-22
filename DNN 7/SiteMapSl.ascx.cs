@@ -20,7 +20,6 @@ namespace WatchersNET.DNN.Modules
     using System.Web.UI;
     using System.Web.UI.HtmlControls;
     using System.Web.UI.WebControls;
-
     using DotNetNuke.Common;
     using DotNetNuke.Common.Utilities;
     using DotNetNuke.Entities.Content.Common;
@@ -1110,18 +1109,18 @@ namespace WatchersNET.DNN.Modules
         /// </summary>
         private void PlaceSkinStyleLink()
         {
-            if (this.sRenderMode.Equals("normal"))
-            {
-                PageBase.RegisterStyleSheet(
-                    this.Page,
-                    this.ResolveUrl(string.Format("{0}{1}/SiteMap.css", this.ResolveUrl("Skins/"), this.sSkinName)));
-            }
-            else if (this.sRenderMode.Equals("treeview"))
-            {
-                PageBase.RegisterStyleSheet(
-                    this.Page,
-                    this.ResolveUrl(string.Format("{0}{1}/SiteMapTree.css", this.ResolveUrl("Skins/"), this.sSkinName)));
-            }
+            //if (this.sRenderMode.Equals("normal"))
+            //{
+            //    PageBase.RegisterStyleSheet(
+            //        this.Page,
+            //        this.ResolveUrl(string.Format("{0}{1}/SiteMap.css", this.ResolveUrl("Skins/"), this.sSkinName)));
+            //}
+            //else if (this.sRenderMode.Equals("treeview"))
+            //{
+            //    PageBase.RegisterStyleSheet(
+            //        this.Page,
+            //        this.ResolveUrl(string.Format("{0}{1}/SiteMapTree.css", this.ResolveUrl("Skins/"), this.sSkinName)));
+            //}
         }
 
         /// <summary>
@@ -1221,8 +1220,8 @@ namespace WatchersNET.DNN.Modules
                     // Add Friendly URLS
                     if (this.bHumanUrls)
                     {
-                        ctlAnchor.HRef = Globals.FriendlyUrl(
-                            objTab, Globals.ApplicationURL(objTab.TabID), this.PortalSettings);
+                        //ctlAnchor.HRef = Globals.FriendlyUrl(
+                        //    objTab, Globals.ApplicationURL(objTab.TabID), this.PortalSettings);
                     }
                 }
 
@@ -1461,7 +1460,7 @@ namespace WatchersNET.DNN.Modules
                 return this.ResolveUrl(tab.IconFile);
             }
 
-            return tab.IsSuperTab || tab.IsAdminTab
+            return tab.IsSuperTab || tab.IsSystem
                        ? this.ResolveUrl(string.Format("{0}/images/{1}", Globals.ApplicationPath, tab.IconFile))
                        : this.ResolveUrl(Path.Combine(this.PortalSettings.HomeDirectory, tab.IconFile));
         }

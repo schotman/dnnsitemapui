@@ -18,7 +18,6 @@ namespace WatchersNET.DNN.Modules
     using System.IO;
     using System.Linq;
     using System.Web.UI.WebControls;
-
     using DotNetNuke.Common;
     using DotNetNuke.Common.Utilities;
     using DotNetNuke.Entities.Content.Common;
